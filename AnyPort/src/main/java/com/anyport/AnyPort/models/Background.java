@@ -1,11 +1,9 @@
 package com.anyport.AnyPort.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
 public class Background {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

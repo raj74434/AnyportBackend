@@ -16,9 +16,18 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private User userEntity;
     public User createUser(UserDto userDto){
         User user=mapper.userDto_to_user(userDto);
-        return  user;
+
+//        This thing also work ==============================
+
+//        userEntity.setGender(userDto.getGender());
+//        userEntity.setName(userDto.getName());
+//        =========================================================
+        return userRepo.save(user);
+
     }
 
 }
