@@ -10,7 +10,6 @@ public class UserDto {
 
 
 
-
     private String name;
     private String phone;
     private String gender;
@@ -28,6 +27,8 @@ public class UserDto {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+
+
 
 
     public String getName() {

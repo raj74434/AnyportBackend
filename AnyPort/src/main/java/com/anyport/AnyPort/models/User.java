@@ -24,6 +24,9 @@ public class User {
     @JsonIgnore
     private Background verify;
 
+
+
+
     @Override
     public String toString() {
         return "User{" +
@@ -35,6 +38,14 @@ public class User {
                 ", password='" + password + '\'' +
                 ", verify=" + verify +
                 '}';
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Integer getUserId() {

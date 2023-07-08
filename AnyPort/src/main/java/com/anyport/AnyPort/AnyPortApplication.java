@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+//For
+
 public class AnyPortApplication {
 
 	public static void main(String[] args) {
@@ -16,5 +18,7 @@ public class AnyPortApplication {
 	public User createUser(){
 		return new User();
 	}
+
+
 
 }
