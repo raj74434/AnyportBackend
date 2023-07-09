@@ -23,8 +23,8 @@ public class AuthConfig {
     public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
 
         http
-//                .cors()
-//                .and()
+                .cors()
+                .and()
                 .csrf().disable()
                 .authorizeHttpRequests()
                 .antMatchers(HttpMethod.POST, "/signup")
