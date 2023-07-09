@@ -13,7 +13,9 @@ public class ProxyConfig implements WebMvcConfigurer {
                 .allowedOrigins("*") // Replace with your Netlify app's URL
                 .allowedMethods("*")
                 .allowedHeaders("*")
+
                 .allowCredentials(true);
+
     }
 
 
