@@ -16,7 +16,8 @@ public class AuthConfig {
     @Bean
     public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
 
-        http.csrf().disable()
+        http
+                .csrf() .and().cors().disable()
                 .authorizeHttpRequests()
 //                .requestMatchers(HttpMethod.POST,"/ApI")
                 .antMatchers(HttpMethod.POST, "/signup")
