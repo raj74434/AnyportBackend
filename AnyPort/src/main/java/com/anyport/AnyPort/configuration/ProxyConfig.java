@@ -10,7 +10,7 @@ public class ProxyConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("**")
-                .allowedOrigins("https://anyport.netlify.app") // Replace with your Netlify app's URL
+                .allowedOrigins("*") // Replace with your Netlify app's URL
                 .allowedMethods("*")
                 .allowedHeaders("*")
                 .allowCredentials(true);
