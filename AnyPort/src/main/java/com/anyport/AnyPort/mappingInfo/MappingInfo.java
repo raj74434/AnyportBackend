@@ -1,6 +1,9 @@
 package com.anyport.AnyPort.mappingInfo;
 
+import com.anyport.AnyPort.dto.OrderDto;
 import com.anyport.AnyPort.dto.UserDto;
+import com.anyport.AnyPort.models.ActiveOrders;
+import com.anyport.AnyPort.models.Orders;
 import com.anyport.AnyPort.models.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +23,16 @@ public class MappingInfo {
         return modelMapper.map(user, UserDto.class);
     }
 
+
+    public Orders dto_To_Orders(OrderDto orderDto){
+        return modelMapper.map(orderDto,Orders.class);
+    }
+    public OrderDto orders_To_Dto(Orders orders){
+        return modelMapper.map(orders,OrderDto.class);
+    }
+
+    public ActiveOrders orders_To_ActiveOrders(Orders orders){
+        return modelMapper.map(orders,ActiveOrders.class);
+    }
 
 }

@@ -6,21 +6,15 @@ import javax.persistence.OneToOne;
 
 public class OrderDto {
 
-    private Integer orderId;
-
     private Integer price;
     private Integer payment_method;
-    private String pickupAddress;
-    private String dropAddress;
+    private String sender;
+    private String reciver;
     private String status;
 
-    public Integer getOrderId() {
-        return orderId;
-    }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
+
+
 
     public Integer getPrice() {
         return price;
@@ -38,20 +32,20 @@ public class OrderDto {
         this.payment_method = payment_method;
     }
 
-    public String getPickupAddress() {
-        return pickupAddress;
+    public String getSender() {
+        return sender;
     }
 
-    public void setPickupAddress(String pickupAddress) {
-        this.pickupAddress = pickupAddress;
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
-    public String getDropAddress() {
-        return dropAddress;
+    public String getReciver() {
+        return reciver;
     }
 
-    public void setDropAddress(String dropAddress) {
-        this.dropAddress = dropAddress;
+    public void setReciver(String reciver) {
+        this.reciver = reciver;
     }
 
     public String getStatus() {
