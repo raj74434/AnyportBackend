@@ -18,4 +18,7 @@ public class Address {
 
     private String phone;
 
+    private String longitude;
+
+    private String latitude;
 }
