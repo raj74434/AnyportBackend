@@ -1,6 +1,5 @@
 package com.anyport.AnyPort.service;
 
-import com.anyport.AnyPort.dto.OrderDto;
 import com.anyport.AnyPort.dto.UserDto;
 import com.anyport.AnyPort.mappingInfo.MappingInfo;
 import com.anyport.AnyPort.models.Orders;
@@ -43,9 +42,18 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
     public List<Orders> oldOrders(Integer id){
         List<Orders> orders=ordersRepo.findByCustomerUser(id);
         return orders;
+    }
+    @Override
+    public User getUserProfile(Integer id){
+       User user= userRepo.findById(id).orElseThrow();
+       if(user.getUserType().equals("Rider")){
+           user.setOrder(user.getDriverOrders());
+       }
+       return user;
     }
 
 }

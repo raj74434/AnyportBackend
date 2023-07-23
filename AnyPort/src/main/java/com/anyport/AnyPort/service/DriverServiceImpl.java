@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -42,19 +43,18 @@ public class DriverServiceImpl implements  DriverService {
         User user=mapper.userDto_to_user(userDto);
         user.setUserType("Rider");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        This thing also work ==============================
-
-//        userEntity.setGender(userDto.getGender());
-//        userEntity.setName(userDto.getName());
-//        =========================================================
         return userRepo.save(user);
-
     }
 
     @Override
     public Background veryfyBackground(Background background, Integer userId){
+        System.out.println(userId);
         User user=userRepo.findById(userId).orElseThrow();
-        if(user ==null || !user.equals("Rider") ) throw new RuntimeException();
+        if(user ==null || !user.getUserType().equals("Rider") ) throw new RuntimeException();
+        background.setDate(LocalDate.now());
+        background.setDriverId(user);
+        background.setVerified(true);
+        user.setBackgroundVerify(background);
         background.setDriverId(user);
         return backgroundRepo.save(background);
     }
@@ -62,8 +62,8 @@ public class DriverServiceImpl implements  DriverService {
 
     @Override
     public List<Orders> catchOrder(Integer orderId, Integer userId){
-        User user=userRepo.findById(userId).orElseThrow();
-        if(user.getBackgroundVerify().isVerified()== false) throw new RuntimeException();
+        User user=userRepo.findById(userId).orElseThrow(()->new RuntimeException(" user not found"));
+        if(user.getBackgroundVerify().isVerified()== false) throw new RuntimeException("Background not verified");
 
         ActiveOrders activeOrder=activeOrderRepo.findById(orderId).orElseThrow();
         Orders order=ordersRepo.findById(orderId).orElseThrow();
@@ -71,10 +71,10 @@ public class DriverServiceImpl implements  DriverService {
         activeOrderRepo.delete(activeOrder);
         order.setStatus("Asigned");
         order.setDriverUser(user);
-
-        user.addOrder(ordersRepo.save(order));
+        Orders savedOrder=ordersRepo.save(order);
+        user.addOrder(savedOrder);
         User savedUser =userRepo.save(user);
-        return savedUser.getOrder();
+        return user.getDriverOrders();
 
     }
 

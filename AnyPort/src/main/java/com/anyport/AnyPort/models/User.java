@@ -24,7 +24,7 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "driverId")
     @JsonIgnore
     private Background backgroundVerify;
 
@@ -32,11 +32,18 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy ="customerUser")
     List<Orders> order=new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy ="driverUser")
+    List<Orders> driverOrders=new ArrayList<>();
 
 
 
     public void addOrder(Orders orders) {
-        order.add(orders);
+       this.order.add(orders);
+    }
+
+    public void addDriverOrder(Orders orders) {
+        this.driverOrders.add(orders);
     }
 
 

@@ -1,17 +1,16 @@
 package com.anyport.AnyPort.controllers;
 
+import com.anyport.AnyPort.dto.UserDto;
 import com.anyport.AnyPort.models.ActiveOrders;
+import com.anyport.AnyPort.models.Background;
 import com.anyport.AnyPort.models.Orders;
+import com.anyport.AnyPort.models.User;
 import com.anyport.AnyPort.service.DriverService;
-import com.anyport.AnyPort.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +20,18 @@ public class DriverController {
 
     @Autowired
     private DriverService driverService;
+
+    @CrossOrigin
+    @PostMapping("/createNewDriver")
+    public ResponseEntity<User> createDriverUser(@RequestBody  UserDto userDto) {
+      return new ResponseEntity<>(driverService.createDriverUser(userDto),HttpStatus.CREATED);
+    }
+
+    @CrossOrigin
+    @PostMapping("/verifyBackground/{userId}")
+    public ResponseEntity<Background> verifyBackground(@RequestBody  Background background ,Integer userId) {
+        return new ResponseEntity<>(driverService.veryfyBackground(background,userId),HttpStatus.CREATED);
+    }
 
     @CrossOrigin
     @GetMapping("/activeOrders")

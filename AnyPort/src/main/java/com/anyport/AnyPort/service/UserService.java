@@ -11,4 +11,5 @@ public interface UserService {
     public User createCustomerUser(UserDto userDto);
     public List<Orders> oldOrders(Integer id);
 
+    User getUserProfile(Integer id);
 }

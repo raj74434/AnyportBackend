@@ -17,7 +17,7 @@ public class Orders {
     @ManyToOne(cascade = CascadeType.ALL)
     private User customerUser; // the person who is order the parcel
     @JsonIgnore
-    @OneToOne
+    @ManyToOne (cascade = CascadeType.ALL )
     private User driverUser;  // driver who pickup the parcel
 
     private Integer price;

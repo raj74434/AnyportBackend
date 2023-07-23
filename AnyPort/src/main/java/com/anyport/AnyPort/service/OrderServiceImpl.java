@@ -40,7 +40,7 @@ public class OrderServiceImpl implements OrderService {
     public Orders createOrder(PlaceOrderDTO placeOrderDTO, Integer id){
         Optional<User> user=userRepo.findById(id);
         User response=user.get();
-        if(response!=null) {
+        if(response!=null && response.getUserType().equals("Customer")) {
             orders.setStatus("Active");
             orders.setOrderPlacedTime(LocalDateTime.now());
             orders.setPayment_method(placeOrderDTO.getPayment_method());
@@ -71,7 +71,7 @@ public class OrderServiceImpl implements OrderService {
              return savedOrder;
         }
         else{
-            return null;
+           throw new RuntimeException("User is not right");
         }
     }
 

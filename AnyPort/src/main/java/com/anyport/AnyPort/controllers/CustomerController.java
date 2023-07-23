@@ -58,6 +58,11 @@ public class CustomerController {
        return new ResponseEntity<>(orderService.createOrder(placeOrderDTO,id),HttpStatus.CREATED);
     }
 
+    @GetMapping("/getUserProfile/{userId}")
+    public ResponseEntity<User>  getUserProfile(@PathVariable Integer userId){
+        return new ResponseEntity<>(userService.getUserProfile(userId),HttpStatus.OK);
+    }
+
 
 
 }
