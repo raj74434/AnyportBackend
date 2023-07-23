@@ -16,7 +16,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
-    private String type;
+    private String userType;
     private String name;
     @Column(unique = true)
     private String phone;

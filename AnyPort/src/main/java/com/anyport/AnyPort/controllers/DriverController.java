@@ -4,6 +4,7 @@ import com.anyport.AnyPort.models.ActiveOrders;
 import com.anyport.AnyPort.models.Orders;
 import com.anyport.AnyPort.service.DriverService;
 import com.anyport.AnyPort.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import java.util.List;
 @RequestMapping("/drive")
 public class DriverController {
 
+    @Autowired
     private DriverService driverService;
 
     @CrossOrigin

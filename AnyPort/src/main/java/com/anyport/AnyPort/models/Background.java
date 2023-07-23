@@ -11,8 +11,7 @@ public class Background {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer backgroundId;
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "verify")
-
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "backgroundVerify")
     private User driverId;
 
     private LocalDate date;

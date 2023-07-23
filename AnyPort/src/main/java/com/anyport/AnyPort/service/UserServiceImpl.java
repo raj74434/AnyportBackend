@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
     public User createCustomerUser(UserDto userDto){
         User user=mapper.userDto_to_user(userDto);
-        user.setType("Customer");
+        user.setUserType("Customer");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 //        This thing also work ==============================
 
