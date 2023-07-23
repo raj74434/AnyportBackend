@@ -1,8 +1,11 @@
 package com.anyport.AnyPort.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@Data
 @Entity
 public class Background {
     @Id
@@ -17,6 +20,7 @@ public class Background {
     private String vehicleNumber;
     private String adharcard;
     private String drivingLicenece;
+    private boolean isVerified;
 
 
 }

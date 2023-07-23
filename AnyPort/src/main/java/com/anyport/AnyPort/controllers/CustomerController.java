@@ -1,6 +1,7 @@
 package com.anyport.AnyPort.controllers;
 
 import com.anyport.AnyPort.dto.OrderDto;
+import com.anyport.AnyPort.dto.PlaceOrderDTO;
 import com.anyport.AnyPort.dto.UserDto;
 import com.anyport.AnyPort.models.Orders;
 import com.anyport.AnyPort.models.User;
@@ -18,6 +19,8 @@ import java.util.Optional;
 
 @Controller
 public class CustomerController {
+
+
 
     @Autowired
     private UserRepo userRepo;
@@ -50,9 +53,9 @@ public class CustomerController {
 
     @CrossOrigin
     @PostMapping("/order/{id}")
-    public ResponseEntity<Orders> createOrder(@RequestBody Orders orders,@PathVariable Integer id){
+    public ResponseEntity<Orders> createOrder(@RequestBody PlaceOrderDTO placeOrderDTO , @PathVariable Integer id){
 
-       return new ResponseEntity<>(orderService.createOrder(orders,id),HttpStatus.CREATED);
+       return new ResponseEntity<>(orderService.createOrder(placeOrderDTO,id),HttpStatus.CREATED);
     }
 
 

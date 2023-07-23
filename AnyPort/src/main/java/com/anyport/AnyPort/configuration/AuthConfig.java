@@ -20,14 +20,13 @@ public class AuthConfig {
     public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
 
         http
-                .addFilterBefore(new CorsFilter2() , ChannelProcessingFilter.class)
 //                .cors()
 //                .and()
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers(HttpMethod.POST, "/signup")
-                .permitAll()
-                .anyRequest().authenticated()
+                .antMatchers(HttpMethod.POST, "/signup").permitAll()
+                .anyRequest().permitAll()
+//                .authenticated()
                 .and()
                 .formLogin()
                 .and()
