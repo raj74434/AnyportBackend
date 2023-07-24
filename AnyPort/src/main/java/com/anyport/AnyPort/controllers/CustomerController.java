@@ -37,12 +37,7 @@ public class CustomerController {
         return new ResponseEntity<>(userService.createCustomerUser(userDto), HttpStatus.CREATED);
     }
 
-    @CrossOrigin
-    @GetMapping("/check")
-    private ResponseEntity<String> check(){
-        System.out.println("Recevied");
-       return new ResponseEntity<>("it is ok",HttpStatus.ACCEPTED);
-    }
+
 
     @CrossOrigin
     @GetMapping("/oldOrd/{id}")
@@ -61,6 +56,13 @@ public class CustomerController {
     @GetMapping("/getUserProfile/{userId}")
     public ResponseEntity<User>  getUserProfile(@PathVariable Integer userId){
         return new ResponseEntity<>(userService.getUserProfile(userId),HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PutMapping("/updateProfile/{userId}")
+    private ResponseEntity<User> Signup(@RequestBody UserDto userDto,Integer userId){
+
+        return new ResponseEntity<>(userService.updateUserProfile(userId,userDto), HttpStatus.ACCEPTED);
     }
 
 

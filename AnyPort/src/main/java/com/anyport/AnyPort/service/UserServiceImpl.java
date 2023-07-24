@@ -56,4 +56,16 @@ public class UserServiceImpl implements UserService {
        return user;
     }
 
+    @Override
+    public User updateUserProfile(Integer id,UserDto userDto){
+        User user= userRepo.findById(id).orElseThrow();
+        if( !userDto.getGender().equals(user.getGender() )&& !userDto.getGender().equals("") ) user.setGender(userDto.getGender());
+        if(!userDto.getName() .equals("")){user.setName(userDto.getName());}
+        if(!userDto.getPhone().equals("")){user.setPhone(user.getPhone());}
+        if(!userDto.getPassword().equals("")){user.setPassword(passwordEncoder.encode(userDto.getPassword())); }
+
+        return userRepo.save(user);
+    }
+
+
 }

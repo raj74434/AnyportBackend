@@ -12,4 +12,6 @@ public interface UserService {
     public List<Orders> oldOrders(Integer id);
 
     User getUserProfile(Integer id);
+
+    User updateUserProfile(Integer id, UserDto userDto);
 }
