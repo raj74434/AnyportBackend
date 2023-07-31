@@ -1,5 +1,6 @@
 package com.anyport.AnyPort.controllers;
 
+import com.anyport.AnyPort.dto.DistanceDTO;
 import com.anyport.AnyPort.dto.OrderDto;
 import com.anyport.AnyPort.dto.PlaceOrderDTO;
 import com.anyport.AnyPort.dto.UserDto;
@@ -42,6 +43,7 @@ public class CustomerController {
     @CrossOrigin
     @GetMapping("/oldOrd/{id}")
     public ResponseEntity<List<Orders>> customerOrderhistory(@PathVariable Integer id){
+        System.out.println(id);
         return new ResponseEntity<>(userService.oldOrders(id),HttpStatus.OK);
     }
 
@@ -60,16 +62,27 @@ public class CustomerController {
 
     @CrossOrigin
     @PutMapping("/updateProfile/{userId}")
-    private ResponseEntity<User> Signup(@RequestBody UserDto userDto,Integer userId){
+    private ResponseEntity<User> updateProfile(@RequestBody UserDto userDto,Integer userId){
 
         return new ResponseEntity<>(userService.updateUserProfile(userId,userDto), HttpStatus.ACCEPTED);
     }
 
     @CrossOrigin
     @GetMapping("/getOrderDetails/{orderId}")
-    private ResponseEntity<Orders> Signup(Integer orderId){
+    private ResponseEntity<Orders> getOrderStatus(@PathVariable Integer orderId){
 
         return new ResponseEntity<>(userService.orderStatus(orderId), HttpStatus.ACCEPTED);
     }
+
+    @CrossOrigin
+    @GetMapping("/calculatePrice")
+    private ResponseEntity<DistanceDTO> calculatePrice(@RequestBody DistanceDTO distanceDTO){
+
+        return new ResponseEntity<>(
+                userService.calculateDistance(distanceDTO)
+                , HttpStatus.ACCEPTED);
+    }
+
+
 
 }
