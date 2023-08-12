@@ -1,7 +1,6 @@
 package com.anyport.AnyPort.controllers;
 
 import com.anyport.AnyPort.dto.DistanceDTO;
-import com.anyport.AnyPort.dto.OrderDto;
 import com.anyport.AnyPort.dto.PlaceOrderDTO;
 import com.anyport.AnyPort.dto.UserDto;
 import com.anyport.AnyPort.models.Orders;
@@ -19,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/customer")
 public class CustomerController {
 
 
@@ -31,7 +31,7 @@ public class CustomerController {
     @Autowired
     private OrderService orderService;
 
-    @CrossOrigin
+    @CrossOrigin("*")
     @PostMapping("/signup")
     private ResponseEntity<User> Signup(@RequestBody UserDto userDto){
         System.out.println(userDto);
@@ -40,8 +40,8 @@ public class CustomerController {
 
 
 
-    @CrossOrigin
-    @GetMapping("/oldOrd/{id}")
+    @CrossOrigin("*")
+    @GetMapping("/all/oldOrd/{id}")
     public ResponseEntity<List<Orders>> customerOrderhistory(@PathVariable Integer id){
         System.out.println(id);
         return new ResponseEntity<>(userService.oldOrders(id),HttpStatus.OK);
@@ -49,32 +49,32 @@ public class CustomerController {
 
 
     @CrossOrigin
-    @PostMapping("/order/{id}")
+    @PostMapping("/all/order/{id}")
     public ResponseEntity<Orders> createOrder(@RequestBody PlaceOrderDTO placeOrderDTO , @PathVariable Integer id){
 
        return new ResponseEntity<>(orderService.createOrder(placeOrderDTO,id),HttpStatus.CREATED);
     }
 
-    @GetMapping("/getUserProfile/{userId}")
+    @GetMapping("/all/getUserProfile/{userId}")
     public ResponseEntity<User>  getUserProfile(@PathVariable Integer userId){
         return new ResponseEntity<>(userService.getUserProfile(userId),HttpStatus.OK);
     }
 
     @CrossOrigin
-    @PutMapping("/updateProfile/{userId}")
+    @PutMapping("/all/updateProfile/{userId}")
     private ResponseEntity<User> updateProfile(@RequestBody UserDto userDto,Integer userId){
 
         return new ResponseEntity<>(userService.updateUserProfile(userId,userDto), HttpStatus.ACCEPTED);
     }
 
     @CrossOrigin
-    @GetMapping("/getOrderDetails/{orderId}")
+    @GetMapping("/all/getOrderDetails/{orderId}")
     private ResponseEntity<Orders> getOrderStatus(@PathVariable Integer orderId){
 
         return new ResponseEntity<>(userService.orderStatus(orderId), HttpStatus.ACCEPTED);
     }
 
-    @CrossOrigin
+    @CrossOrigin("*")
     @GetMapping("/calculatePrice")
     private ResponseEntity<DistanceDTO> calculatePrice(@RequestBody DistanceDTO distanceDTO){
 

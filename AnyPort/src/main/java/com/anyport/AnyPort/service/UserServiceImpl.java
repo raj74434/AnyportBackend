@@ -32,13 +32,9 @@ public class UserServiceImpl implements UserService {
 
     public User createCustomerUser(UserDto userDto){
         User user=mapper.userDto_to_user(userDto);
-        user.setUserType("Customer");
+        user.setUserType("ROLE_CUSTOMER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        This thing also work ==============================
 
-//        userEntity.setGender(userDto.getGender());
-//        userEntity.setName(userDto.getName());
-//        =========================================================
         return userRepo.save(user);
 
     }
@@ -49,10 +45,12 @@ public class UserServiceImpl implements UserService {
         List<Orders> orders=ordersRepo.findByCustomerUser(id);
         return orders;
     }
+
+//    By this we are setting order details of Rider User
     @Override
     public User getUserProfile(Integer id){
        User user= userRepo.findById(id).orElseThrow();
-       if(user.getUserType().equals("Rider")){
+       if(user.getUserType().equals("ROLE_RIDER")){
            user.setOrder(user.getDriverOrders());
        }
        return user;

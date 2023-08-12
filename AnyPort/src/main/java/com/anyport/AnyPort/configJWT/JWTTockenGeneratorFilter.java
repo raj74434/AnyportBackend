@@ -16,8 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+
 
 public class JWTTockenGeneratorFilter extends OncePerRequestFilter {
     @Override
@@ -37,8 +36,9 @@ public class JWTTockenGeneratorFilter extends OncePerRequestFilter {
                     setIssuer("Raj")
                     .setSubject("Jwt tocken")  //these two are optional
                     .claim("username",authentication.getName())
+
 //    It call method  ===> populateAuthorities <====  which return a string with comma seprated eg=> ADMIN,CUSTOMER,RIDER
-                    .claim("authorities",populateAuthorities(authentication.getAuthorities()))
+                    .claim("role",populateAuthorities(authentication.getAuthorities()))
                     .setIssuedAt(new Date())
                     .setExpiration(new Date(new Date().getTime()+300000000))
                     .signWith(secretKey).compact();
@@ -54,11 +54,11 @@ public class JWTTockenGeneratorFilter extends OncePerRequestFilter {
     }
 
     private String populateAuthorities(Collection< ? extends GrantedAuthority>  collection){
-        Set<String> authSet=new HashSet<>();
+        String role="";
         for(GrantedAuthority auth:collection){
-            authSet.add(auth.getAuthority());
+           role=auth.getAuthority();
         }
-        return String.join(",",authSet);
+        return role;
     }
 
     @Override

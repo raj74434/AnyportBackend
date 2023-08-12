@@ -21,6 +21,9 @@ public class User {
     @Column(unique = true)
     private String phone;
     private String gender;
+
+
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
