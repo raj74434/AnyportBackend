@@ -15,7 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Controller
 @RequestMapping("/customer")
@@ -31,7 +31,7 @@ public class CustomerController {
     @Autowired
     private OrderService orderService;
 
-    @CrossOrigin("*")
+
     @PostMapping("/signup")
     private ResponseEntity<User> Signup(@RequestBody UserDto userDto){
         System.out.println(userDto);
@@ -40,7 +40,6 @@ public class CustomerController {
 
 
 
-    @CrossOrigin("*")
     @GetMapping("/all/oldOrd/{id}")
     public ResponseEntity<List<Orders>> customerOrderhistory(@PathVariable Integer id){
         System.out.println(id);
@@ -48,7 +47,7 @@ public class CustomerController {
     }
 
 
-    @CrossOrigin
+
     @PostMapping("/all/order/{id}")
     public ResponseEntity<Orders> createOrder(@RequestBody PlaceOrderDTO placeOrderDTO , @PathVariable Integer id){
 
@@ -60,21 +59,21 @@ public class CustomerController {
         return new ResponseEntity<>(userService.getUserProfile(userId),HttpStatus.OK);
     }
 
-    @CrossOrigin
+
     @PutMapping("/all/updateProfile/{userId}")
     private ResponseEntity<User> updateProfile(@RequestBody UserDto userDto,Integer userId){
 
         return new ResponseEntity<>(userService.updateUserProfile(userId,userDto), HttpStatus.ACCEPTED);
     }
 
-    @CrossOrigin
+
     @GetMapping("/all/getOrderDetails/{orderId}")
     private ResponseEntity<Orders> getOrderStatus(@PathVariable Integer orderId){
 
         return new ResponseEntity<>(userService.orderStatus(orderId), HttpStatus.ACCEPTED);
     }
 
-    @CrossOrigin("*")
+
     @GetMapping("/calculatePrice")
     private ResponseEntity<DistanceDTO> calculatePrice(@RequestBody DistanceDTO distanceDTO){
 
